@@ -20,3 +20,6 @@ export const studentService = {
   getAllStudentFromDB,
   getSingleStudentFromDB,
 };
+
+
+
