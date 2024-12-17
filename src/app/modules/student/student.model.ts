@@ -94,17 +94,13 @@ const localGuradianSchema = new Schema<TLocalGuardian>({
 const studentSchema = new Schema<TStudent, StudentModel>(
   {
     id: { type: String, required: [true, 'Id is requeired'], unique: true },
-    user : {
-      type : Schema.Types.ObjectId,
-      required :  [true, 'User Id is requeired'],
-      unique : true,
-      ref : 'User',
+    user: {
+      type: Schema.Types.ObjectId,
+      required: [true, 'User Id is requeired'],
+      unique: true,
+      ref: 'User',
     },
-    password: {
-      type: String,
-      required: [true, 'Password is requeired'],
-      maxlength: [20, 'password can not be 20 characters'],
-    },
+
     name: {
       type: userNameSchema,
       required: true,
@@ -161,8 +157,6 @@ studentSchema.virtual('fullName').get(function () {
   return `${this.name.firstName} ${this.name.middleName} ${this.name.lastName}`;
 });
 
-
-
 // query middleware
 
 studentSchema.pre('find', function (next) {
@@ -183,6 +177,5 @@ studentSchema.static.isUserExists = async function (id: string) {
   const existingUser = await Student.findOne({ id });
   return existingUser;
 };
-
 
 export const Student = model<TStudent, StudentModel>('Student', studentSchema);

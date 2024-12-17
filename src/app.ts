@@ -1,7 +1,14 @@
-import express, { NextFunction, Request, Response } from 'express';
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import cors from 'cors';
+
+import express, { Request, Response } from 'express';
+import globalErrorHandler from './app/maddwares/globalErrorHandlers';
 import { StudentRoutes } from './app/modules/student/student.route';
 import { UserRoutes } from './app/modules/user/user.route';
+import notFound from './app/maddwares/notFound';
 const app = express();
 
 // parsers
@@ -21,16 +28,9 @@ app.get('/', getAController);
 
 console.log(process.cwd());
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  let statusCode = 500 ;
-  let message =err.message || 'Something went wrong!';
-  
+app.use(globalErrorHandler);
 
-  return res.status(statusCode).json({
-    success:false,
-    message,
-    error : err,
-  })
-})
+// not found
+app.use(notFound);
 
 export default app;
