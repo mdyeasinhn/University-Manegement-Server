@@ -6,9 +6,8 @@ import cors from 'cors';
 
 import express, { Request, Response } from 'express';
 import globalErrorHandler from './app/maddwares/globalErrorHandlers';
-import { StudentRoutes } from './app/modules/student/student.route';
-import { UserRoutes } from './app/modules/user/user.route';
 import notFound from './app/maddwares/notFound';
+import router from './app/routes';
 const app = express();
 
 // parsers
@@ -16,15 +15,14 @@ app.use(express.json());
 app.use(cors());
 
 // Application routes
-app.use('/api/v1/students', StudentRoutes);
-app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1', router);
 
-const getAController = (req: Request, res: Response) => {
+const test = (req: Request, res: Response) => {
   const a = 10;
   res.send({ value: a });
 };
 
-app.get('/', getAController);
+app.get('/', test);
 
 console.log(process.cwd());
 
