@@ -3,11 +3,7 @@ import validateRequest from '../../maddwares/validRequest';
 import { UserControllers } from './user.controller';
 import { studentValidations } from '../student/student.validation';
 
-
-
 const router = express.Router();
-
-
 
 router.post(
   '/create-student',
