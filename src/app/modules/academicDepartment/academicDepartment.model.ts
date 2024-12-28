@@ -22,4 +22,4 @@ const academicDeparmentSchema = new Schema<TAcademicDepartment>(
 );
 
 
-export const AcademicDeparment = model<TAcademicDepartment>('AcademicDeparment', academicDeparmentSchema);
+export const AcademicDepartment = model<TAcademicDepartment>('AcademicDeparment', academicDeparmentSchema);
