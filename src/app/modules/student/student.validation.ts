@@ -52,13 +52,13 @@ const localGuardianValidationSchema = z.object({
 // Student schema
 const createStudentValidationSchema = z.object({
   body: z.object({
-    pasword: z.string().max(20),
+    pasword: z.string().max(20).optional(),
     student: z.object({
       name: userNameValidationSchema,
       gender: z.enum(['male', 'female', 'other'], {
         message: '{VALUE} is not valid',
       }),
-      dateOfBirth: z.date().optional(),
+      dateOfBirth: z.string().optional(),
       email: z
         .string()
         .email({ message: 'Email is not valid' })
@@ -73,12 +73,12 @@ const createStudentValidationSchema = z.object({
       presentAddress: z
         .string()
         .min(1, { message: 'Present address is required' }),
-      permanentAddres: z
+      permanentAddress: z
         .string()
         .min(1, { message: 'Permanent address is required' }),
       guardian: guardianValidationSchema,
       localGuardian: localGuardianValidationSchema,
-      admissionSemester :z.string(), 
+      admissionSemester: z.string(),
       profileImg: z.string().optional(),
     }),
   }),

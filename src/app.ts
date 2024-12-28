@@ -29,6 +29,6 @@ console.log(process.cwd());
 app.use(globalErrorHandler);
 
 // not found
-app.use(notFound);
+//app.use(notFound);
 
 export default app;

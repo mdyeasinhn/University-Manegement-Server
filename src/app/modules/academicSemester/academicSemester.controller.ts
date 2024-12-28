@@ -7,12 +7,14 @@ import { AcademicSemester } from './academicSemester.model';
 const createAcademicSemester = catchAsync(async (req, res) => {
   console.log(req.body);
 
-  const result = await AcademicSemesterServices.createAcademicSemesterIntoDB(req.body)
+  const result = await AcademicSemesterServices.createAcademicSemesterIntoDB(
+    req.body,
+  );
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Student is created successfully',
+    message: 'Academic Semester is created successfully',
     data: result,
   });
 });

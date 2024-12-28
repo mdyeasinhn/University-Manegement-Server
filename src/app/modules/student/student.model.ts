@@ -130,7 +130,7 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
     },
     presentAddress: { type: String, required: true },
-    permanentAddres: { type: String, required: true },
+    permanentAddress: { type: String, required: true },
     guardian: {
       type: guardianSchema,
       required: true,
@@ -140,9 +140,9 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       required: true,
     },
     profileImg: { type: String },
-    admissionSemester : {
-      type : Schema.Types.ObjectId,
-      ref : 'AcademicSemester'
+    admissionSemester: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicSemester',
     },
     isDeleted: {
       type: Boolean,
