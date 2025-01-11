@@ -3,19 +3,21 @@ import validateRequest from '../../maddwares/validRequest';
 import { AcademicDepartmentValidation } from './academicDepartment.validation';
 import { AcademicDepartmentControllers } from './academicDepartment.controller';
 
-
 const router = express.Router();
 
 router.post(
   '/create-academic-department',
   validateRequest(
-   AcademicDepartmentValidation.createAcademicDepartmentValidationSchema,
+    AcademicDepartmentValidation.createAcademicDepartmentValidationSchema,
   ),
- AcademicDepartmentControllers.createAcademicDepartment,
+  AcademicDepartmentControllers.createAcademicDepartment,
 );
 
 router.get('/', AcademicDepartmentControllers.getAllAcademicDepartment);
-router.get('/:departmentId', AcademicDepartmentControllers.getSingleAcademicDepartment);
+router.get(
+  '/:departmentId',
+  AcademicDepartmentControllers.getSingleAcademicDepartment,
+);
 
 router.patch(
   '/:departmentId',
@@ -24,7 +26,5 @@ router.patch(
   ),
   AcademicDepartmentControllers.updateAcademicDepartment,
 );
-
-
 
 export const AcademicDepartmentRoutes = router;
