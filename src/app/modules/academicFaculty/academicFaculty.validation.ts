@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-
 const createAcademicFacultyValidationSchema = z.object({
   body: z.object({
     name: z.string({
@@ -18,6 +17,6 @@ const updateAcademicFacultyValidationSchema = z.object({
 });
 
 export const AcademicFacultyValidation = {
- createAcademicFacultyValidationSchema,
- updateAcademicFacultyValidationSchema,
+  createAcademicFacultyValidationSchema,
+  updateAcademicFacultyValidationSchema,
 };
