@@ -1,5 +1,7 @@
 import express from 'express';
 import validateRequest from '../../maddwares/validRequest';
+import { FacultyControllers } from './faculty.controller';
+import { updateFacultyValidationSchema } from './faculty.validation';
 
 const router = express.Router();
 
