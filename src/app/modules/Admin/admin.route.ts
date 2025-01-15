@@ -1,6 +1,7 @@
 import express from 'express';
 import validateRequest from '../../maddwares/validRequest';
-
+import { AdminControllers } from './admin.controller';
+import { updateAdminValidationSchema } from './admin.validtion';
 
 const router = express.Router();
 
