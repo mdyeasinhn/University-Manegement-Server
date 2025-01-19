@@ -3,6 +3,9 @@ import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { FacultyServices } from './faculty.service';
 
+
+
+
 const getSingleFaculty = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await FacultyServices.getSingleFacultyFromDB(id);
@@ -52,6 +55,7 @@ const deleteFaculty = catchAsync(async (req, res) => {
 });
 
 export const FacultyControllers = {
+
   getAllFaculties,
   getSingleFaculty,
   deleteFaculty,
