@@ -73,6 +73,7 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
 
 
 const createFacultyIntoDB = async (password: string, payload: TFaculty) => {
+  console.log(password, payload)
   // create a user object
   const userData: Partial<TUser> = {};
 
