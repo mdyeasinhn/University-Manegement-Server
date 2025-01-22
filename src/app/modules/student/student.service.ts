@@ -8,8 +8,6 @@ import { Student } from './student.model';
 import { studentSearchableFields } from './student.constant';
 import { TStudent } from './student.interface';
 
-
-
 // Retrieve all students from the database
 const getAllStudentFromDB = async (query: Record<string, unknown>) => {
   // const queryObj = { ...query }; // copying req.query object so that we can mutate the copy object

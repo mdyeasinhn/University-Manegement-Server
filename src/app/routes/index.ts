@@ -7,6 +7,7 @@ import { AcademicDepartmentRoutes } from '../modules/AcademicDepartment/academic
 import { AdminRoutes } from '../modules/Admin/admin.route';
 import { FacultyRoutes } from '../modules/Faculty/faculty.route';
 import { CourseRoutes } from '../modules/Course/course.route';
+import { semesterRegistrationRoutes } from '../modules/SemesterRegistration/semesterRigestration.route';
 
 const router = Router();
 
@@ -43,12 +44,12 @@ const moduleRoutes = [
     path: '/courses',
     route: CourseRoutes,
   },
- 
+  {
+    path: '/semester-registration',
+    route: semesterRegistrationRoutes,
+  },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 
 export default router;
-
-
-

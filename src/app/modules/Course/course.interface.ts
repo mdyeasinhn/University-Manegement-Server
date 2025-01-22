@@ -11,7 +11,7 @@ export type TCourse = {
   code: number;
   credits: number;
   preRequisiteCourses: [TPreRequisiteCourses];
-  isDeleted? :boolean;
+  isDeleted?: boolean;
 };
 export type TCoursefaculty = {
   course: Types.ObjectId;
