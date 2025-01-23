@@ -21,7 +21,7 @@ const createSemesterRegistrationIntoDB = async (
 
   const isThereAnyUpcomingOrOngoingSemester =
     await SemesterRegestration.findOne({
-      $or: [{ status: 'UPCOMING' }, { status: 'ONGOING' }],
+      $or: [{ status: RegistrationStatus.UPCOMING }, { status:RegistrationStatus.ONGOING }],
     });
 
   if (isThereAnyUpcomingOrOngoingSemester) {
@@ -94,13 +94,32 @@ const updateSemesterRegistrationIntoDB = async (
   const currentSemesterStatus = isSemesterRegistrationExists?.status;
   const requestedStatus = payload?.status
 
-  if (currentSemesterStatus === 'ENDED') {
+  if (currentSemesterStatus === RegistrationStatus.ENDED  ) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
       `This  semester is already ${currentSemesterStatus}`,
     );
   }
+  if(currentSemesterStatus === RegistrationStatus.UPCOMING && requestedStatus === RegistrationStatus.ENDED){
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      `You can not change status from ${currentSemesterStatus} to ${requestedStatus}`,
+    );
+  }
+  if(currentSemesterStatus === RegistrationStatus.ONGOING && requestedStatus === RegistrationStatus.UPCOMING){
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      `You can not change status from ${currentSemesterStatus} to ${requestedStatus}`,
+    );
+  };
+
+  const result = await SemesterRegestration.findByIdAndUpdate(id, payload, {
+    new : true,
+    runValidators : true,
+  })
+  return result;
 };
+
 
 const deleteSemesterRegistrationFromDB = async (id: string) => {};
 export const SemesterRegistrationService = {
