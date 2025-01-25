@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import httpStatus from 'http-status';
-import mongoose from 'mongoose';
+
 import QueryBuilder from '../../builder/QueryBuilder';
 import AppError from '../../errors/AppError';
 import { RegistrationStatus } from './semesterRegistration.constant';
@@ -121,11 +121,11 @@ const updateSemesterRegistrationIntoDB = async (
 };
 
 
-const deleteSemesterRegistrationFromDB = async (id: string) => {};
+//const deleteSemesterRegistrationFromDB = async (id: string) => {};
 export const SemesterRegistrationService = {
   createSemesterRegistrationIntoDB,
   getAllSemesterRegistrationsFromDB,
   getSingleSemesterRegistrationsFromDB,
   updateSemesterRegistrationIntoDB,
-  deleteSemesterRegistrationFromDB,
+  //deleteSemesterRegistrationFromDB,
 };
