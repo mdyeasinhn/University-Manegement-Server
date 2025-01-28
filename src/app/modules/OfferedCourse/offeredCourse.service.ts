@@ -89,9 +89,19 @@ const createOfferedCourseIntoDB = async (payload: TOfferedCourse) => {
   }
 
   // get the schedules of the faculties
- 
+  const assignedSchedules = await OfferedCourse.find({
+    semesterRegistration,
+    faculty,
+    days: { $in: days },
+  }).select('days startTime endTime');
 
+  const newSchedule = {
+    days,
+    startTime,
+    endTime,
+  };
 
+console.log(assignedSchedules)
 //  Create the offered course
   const result = await OfferedCourse.create({
     ...payload,
