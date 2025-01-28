@@ -6,7 +6,7 @@ import AppError from '../../errors/AppError';
 import { RegistrationStatus } from './semesterRegistration.constant';
 import { TSemesterRegistration } from './semesterRegistration.interface';
 import { AcademicSemester } from '../AcademicSemester/academicSemester.model';
-import { SemesterRegestration } from './semesterRegistration.model';
+import { SemesterRegistration  } from './semesterRegistration.model';
 
 const createSemesterRegistrationIntoDB = async (
   payload: TSemesterRegistration,
@@ -20,7 +20,7 @@ const createSemesterRegistrationIntoDB = async (
   const academicSemester = payload?.academicSemester;
 
   const isThereAnyUpcomingOrOngoingSemester =
-    await SemesterRegestration.findOne({
+    await SemesterRegistration .findOne({
       $or: [{ status: RegistrationStatus.UPCOMING }, { status:RegistrationStatus.ONGOING }],
     });
 
@@ -43,7 +43,7 @@ const createSemesterRegistrationIntoDB = async (
 
   // check if the semester is allready registered !
 
-  const isAcademicRegistrationExists = await SemesterRegestration.findOne({
+  const isAcademicRegistrationExists = await SemesterRegistration .findOne({
     academicSemester,
   });
   if (isAcademicRegistrationExists) {
@@ -53,7 +53,7 @@ const createSemesterRegistrationIntoDB = async (
     );
   }
 
-  const result = await SemesterRegestration.create(payload);
+  const result = await SemesterRegistration .create(payload);
   return result;
 };
 
@@ -61,7 +61,7 @@ const getAllSemesterRegistrationsFromDB = async (
   query: Record<string, unknown>,
 ) => {
   const semesterRegistrationQuery = new QueryBuilder(
-    SemesterRegestration.find().populate('academicSemester'),
+    SemesterRegistration .find().populate('academicSemester'),
     query,
   )
     .filter()
@@ -74,7 +74,7 @@ const getAllSemesterRegistrationsFromDB = async (
 };
 
 const getSingleSemesterRegistrationsFromDB = async (id: string) => {
-  const result = await SemesterRegestration.findById(id);
+  const result = await SemesterRegistration .findById(id);
   return result;
 };
 
@@ -82,7 +82,7 @@ const updateSemesterRegistrationIntoDB = async (
   id: string,
   payload: Partial<TSemesterRegistration>,
 ) => {
-  const isSemesterRegistrationExists = await SemesterRegestration.findById(id);
+  const isSemesterRegistrationExists = await SemesterRegistration .findById(id);
   console.log(isSemesterRegistrationExists)
   if (!isSemesterRegistrationExists) {
     throw new AppError(
@@ -113,7 +113,7 @@ const updateSemesterRegistrationIntoDB = async (
     );
   };
 
-  const result = await SemesterRegestration.findByIdAndUpdate(id, payload, {
+  const result = await SemesterRegistration .findByIdAndUpdate(id, payload, {
     new : true,
     runValidators : true,
   })
