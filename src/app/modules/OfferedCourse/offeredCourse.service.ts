@@ -8,6 +8,7 @@ import { AcademicDepartment } from "../AcademicDepartment/academicDepartment.mod
 import { Course } from "../Course/course.model";
 import { Faculty } from "../Faculty/faculty.model";
 import { hasTimeConflict } from "./offeredCouse.utils";
+import QueryBuilder from "../../builder/QueryBuilder";
 
 const createOfferedCourseIntoDB = async (payload: TOfferedCourse) => {
   const {
@@ -205,6 +206,8 @@ const getSingleOfferedCourseFromDB = async (id: string) => {
 
   return offeredCourse;
 };
+
+
 export const OfferedCourseServices = {
   createOfferedCourseIntoDB,
   updateOfferedCourseIntoDB,
