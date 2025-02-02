@@ -35,17 +35,26 @@ const loginUser = async (payload: TLoginUser) => {
   //create token and sent to the client 
 
   const jwtPayload = {
-    userId  : user.id,
-    role : user.role
+    userId: user.id,
+    role: user.role
   }
-  const accessToken = jwt.sign( jwtPayload, config.jwt_access_secret as string, { expiresIn: '10d' });
+  const accessToken = jwt.sign(jwtPayload, config.jwt_access_secret as string, { expiresIn: '10d' });
 
   return {
     accessToken,
-    needsPasswordChange : user?.needsPasswordChange
+    needsPasswordChange: user?.needsPasswordChange
   }
 };
 
+
+const changePassword = (user : {userId:string, role: string }, payload) => {
+  const result = await User.findOneAndUpdate({
+    id :user.userId,
+    role : user.role,
+  })
+}
+
 export const AuthServices = {
   loginUser,
+  changePassword,
 };
