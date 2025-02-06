@@ -40,7 +40,18 @@ const changePassword = catchAsync(async (req, res) => {  // Added missing parent
 
 });
 
+const refreshToken = catchAsync(async (req, res) =>{
+  const result = await AuthServices.refreshToken(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User is logged in successfully!",
+    data: result,
+  });
+})
+
 export const AuthControllers = {
   loginUser,
-  changePassword
+  changePassword,
+  refreshToken
 };

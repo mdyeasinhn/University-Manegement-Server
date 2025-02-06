@@ -17,5 +17,9 @@ router.post(
     '/change-password', auth(USER_ROLE.admin, USER_ROLE.faculty, USER_ROLE.student), validateRequest(AuthValidation.changePasswordValidationSchema), AuthControllers.changePassword,
     AuthControllers.loginUser,
 );
+router.post(
+    '/refresh-token', validateRequest(AuthValidation.refreshTokenValidationSchema), AuthControllers.refreshToken,
+    AuthControllers.loginUser,
+);
 
 export const AuthRoute = router;
